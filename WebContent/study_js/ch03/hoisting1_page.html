@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=chrome">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    //마치 여기 있는 것처럼 생각하면 된다.
+  </script>
+</head>
+
+<body>
+  <script>
+    let count = 0;//var를 사용하지 않는다. -습관
+    myFnc();
+    //이부분은 hoistng이 일어나므로 한번만 출력이 된다.
+    function myFnc() {
+      count++;
+      document.write("hello" + count, "<br>");
+      //https://developer.Mozilla.org/ko/docs/Web/JavaScript/Reference/Template_literals
+      document.write(`hello ${count}<br>`);//ES6 추가
+    }
+    myFnc();
+
+    const theFnc = function () {
+      count++;
+      // document.write("hello" + count,"<br>");
+      document.write(`hello ${count}<br>`);
+    }
+    theFnc();
+  </script>
+</body>
+
+</html>
