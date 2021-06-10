@@ -18,12 +18,12 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 import com.google.gson.Gson;
 import com.util.HashMapBinder;
 
-public class Board41Controller extends MultiActionController {
-	Logger logger = Logger.getLogger(Board41Controller.class);
-	private Board41Logic boardLogic = null;
+public class BS_BoardController extends MultiActionController {
+	Logger logger = Logger.getLogger(BS_BoardController.class);
+	private BS_BoardLogic bsboardLogic = null;
 	//setter메소드를 통하여 게으른 객체 주입
-	public void setBoardLogic(Board41Logic boardLogic) {
-		this.boardLogic = boardLogic;
+	public void setBsboardLogic(BS_BoardLogic bsboardLogic) {
+		this.bsboardLogic = bsboardLogic;
 	}
 	//request로 유지
 	//메소드를 정의하는 것은 가능하다.
@@ -46,10 +46,10 @@ public class Board41Controller extends MultiActionController {
 		Map<String,Object> target = new HashMap<>();
 		hmb.bind(target);
 		List<Map<String,Object>> boardList = null;
-		boardList=boardLogic.getBoardList(target);//where bm_no=? and bm_title LIKE '%'||?||'%'
+		boardList=bsboardLogic.getBoardList(target);//where bm_no=? and bm_title LIKE '%'||?||'%'
 		logger.info("boardList:"+boardList);//
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("board/getBoardList");
+		mav.setViewName("bs_board/getBoardList");
 		mav.addObject("boardList", boardList);
 		//RequestDispatcher view = req.getRequestDispatcher("getBoardList.jsp");
 		//view.forward(req, res);
@@ -62,7 +62,7 @@ public class Board41Controller extends MultiActionController {
 	{
 		logger.info("jsonGetBoardList 호출 성공");
 		List<Map<String,Object>> boardList = null;
-		boardList = boardLogic.getBoardList(null);
+		boardList = bsboardLogic.getBoardList(null);
 		Gson g = new Gson();
 		String imsi = g.toJson(boardList);
 		res.setContentType("application/json;charset=utf-8");
@@ -78,7 +78,7 @@ public class Board41Controller extends MultiActionController {
 		//사용자가 입력한 값이나 서버에서 클라이언트에게 요청한 값 넘김.
 		hmb.bind(pmap);
 		int result = 0;
-		result = boardLogic.boardInsert(pmap);
+		result = bsboardLogic.boardInsert(pmap);
 		if(result == 1) {
 			//res.sendRedirect("./getBoardList.sp4");
 		}
@@ -88,35 +88,3 @@ public class Board41Controller extends MultiActionController {
 	}
 
 }
-//		boardList = new ArrayList<>();
-//		Map<String,Object> rmap = new HashMap<>();
-//		rmap.put("mem_id", "tomato");
-//		rmap.put("mem_pw", "123");
-//		rmap.put("mem_name", "이순신");
-//		boardList.add(rmap);
-//		rmap = new HashMap<>();
-//		rmap.put("mem_id", "apple");
-//		rmap.put("mem_pw", "125");
-//		rmap.put("mem_name", "강감찬");
-//		boardList.add(rmap);
-//		rmap = new HashMap<>();
-//		rmap.put("mem_id", "nice");
-//		rmap.put("mem_pw", "126");
-//		rmap.put("mem_name", "김유신");
-//		boardList.add(rmap);
-//		boardList = new ArrayList<>();
-//		Map<String,Object> rmap = new HashMap<>();
-//		rmap.put("mem_id", "tomato");
-//		rmap.put("mem_pw", "123");
-//		rmap.put("mem_name", "이순신");
-//		boardList.add(rmap);
-//		rmap = new HashMap<>();
-//		rmap.put("mem_id", "apple");
-//		rmap.put("mem_pw", "125");
-//		rmap.put("mem_name", "강감찬");
-//		boardList.add(rmap);
-//		rmap = new HashMap<>();
-//		rmap.put("mem_id", "nice");
-//		rmap.put("mem_pw", "126");
-//		rmap.put("mem_name", "김유신");
-//		boardList.add(rmap);

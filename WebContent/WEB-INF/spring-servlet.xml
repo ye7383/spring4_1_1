@@ -13,6 +13,10 @@
 		<property name="methodNameResolver" ref="board-resolver"/>
 		<property name="boardLogic" ref="board-logic"/>
 	</bean>
+	<bean id="bsboard-controller" class="web.mvc.BS_BoardController">
+		<property name="methodNameResolver" ref="board-resolver"/>
+		<property name="bsboardLogic" ref="bsboard-logic"/>
+	</bean>
 	<bean id="url-mapping" 
 	class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
@@ -20,6 +24,9 @@
 				<prop key="/board/boardInsert.sp4">board-controller</prop>
 				<prop key="/board/getBoardList.sp4">board-controller</prop>
 				<prop key="/board/jsonGetBoardList.sp4">board-controller</prop>
+				<prop key="/bs_board/boardInsert.sp4">bsboard-controller</prop>
+				<prop key="/bs_board/getBoardList.sp4">bsboard-controller</prop>
+				<prop key="/bs_board/jsonGetBoardList.sp4">bsboard-controller</prop>
 				<prop key="/di/getEmpList.sp4">emp-controller</prop>
 				<prop key="/di/empInsert.sp4">emp-controller</prop>
 				<prop key="/di/empUpdate.sp4">emp-controller</prop>
@@ -33,6 +40,9 @@
 				<prop key="/board/getBoardList.sp4">getBoardList</prop>
 				<prop key="/board/boardInsert.sp4">boardInsert</prop>
 				<prop key="/board/jsonGetBoardList.sp4">jsonGetBoardList</prop>
+				<prop key="/bs_board/getBoardList.sp4">getBoardList</prop>
+				<prop key="/bs_board/boardInsert.sp4">boardInsert</prop>
+				<prop key="/bs_board/jsonGetBoardList.sp4">jsonGetBoardList</prop>
 			</props>
 		</property>
 	</bean>
@@ -51,3 +61,6 @@
 		<property name="suffix" value=".jsp"/>
 	</bean>
 </beans>
+
+
+
